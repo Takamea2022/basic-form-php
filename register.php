@@ -20,9 +20,7 @@
         $password = $_POST['password'];
 
         //Verifying the unique email
-
         $verify_query = mysqli_query($con,"SELECT * FROM users WHERE Email= '$email'");
-        
 
         if(mysqli_num_rows($verify_query) != 0 ) {
           echo "<div class = 'message'>
@@ -30,11 +28,10 @@
                 </div> <br>";
           echo "<a href='javascript:self.history.back()'><button class= 'btn'> Go Back </button>";
         } else {
-
-          //Hash the password before storing it.
-          $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-          mysqli_query($con,"INSERT INTO users(Username,Email, Age, Password) VALUES('$username','$email','$age', '$hashed_password')") or die("Error Occured");
+             //Hash the password before storing it.
+            //  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+             
+              mysqli_query($con,"INSERT INTO users(Username,Email, Age, Password) VALUES('$username','$email','$age', '$password')") or die("Error Occured");
 
           echo "<div class='message'>
                   <p> Registration is successful! </p>
@@ -51,7 +48,7 @@
 
         <div class="field input">
           <label for="username">Username</label>
-          <input type="text" name="username" id="username" autocomplete="off" required>
+          <input type="text" name="username" id="username"  autocomplete="off" required>
         </div>
 
         <div class="field input">
@@ -66,7 +63,7 @@
 
         <div class="field input">
           <label for="password">Password</label>
-          <input type="password" name="password" id="password" autocomplete="off" required>
+          <input type="password" name="password" id="password"  autocomplete="off" required>
         </div>
 
         <div class="field">
@@ -79,7 +76,9 @@
 
       </form>
     </div>
-    <?php } ?>
+    <?php
+      }
+    ?>
   </div>
 </body>
 </html>
